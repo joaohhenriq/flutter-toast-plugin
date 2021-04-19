@@ -11,4 +11,11 @@ class FlutterToastPlugin {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
+
+  static Future<Null> showToast(String msg) async {
+    Map<String, dynamic> args = <String, dynamic>{};
+    args.putIfAbsent('msg', () => msg);
+    await _channel.invokeMethod('showToast', args);
+    return null;
+  }
 }
